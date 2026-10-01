@@ -1,14 +1,13 @@
 set -euo pipefail
 
-# Copy custom system files
-cp -avf "/ctx/system_files"/. /
+
 
 # Build tools needed for the kernel module
 dnf5 install -y gcc make elfutils-libelf-devel "kernel-devel-${KVER}"
 
 # Determine the kernel shipped inside the image.
 KVER="$(rpm -q kernel-core --qf '%{VERSION}-%{RELEASE}.%{ARCH}\n' | sort -V | tail -n1)"
-KERNELDIR="/usr/lib/modules/${KVER}/build"
+KERNELDIR="/usr/src/kernels/${KVER}"
 
 echo "Building facer for kernel: ${KVER}"
 echo "Kernel build tree: ${KERNELDIR}"
