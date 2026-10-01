@@ -11,7 +11,6 @@ test -d "${KERNELDIR}"
 
 # Build tools needed for the kernel module
 dnf5 install -y gcc make elfutils-libelf-devel "kernel-devel-${KVER}"
-
 # Copy facer source into the build environment
 rm -rf /tmp/facer
 cp -a /ctx/build_files/facer /tmp/facer
